@@ -1,0 +1,60 @@
+name: Feature request
+description: A stage of the production line this plugin should handle better.
+title: "[feature] "
+labels: ["enhancement"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        The most useful requests describe the **production problem**, not the button you want.
+        We are building a series here, so a request may land in a different plugin than you expect.
+
+        We don't merge outside PRs — an issue is still the right place to start, and a good one can
+        ship. 不合并外部 PR，但好点子照样能上线，开 issue 就行。
+
+  - type: dropdown
+    id: stage
+    attributes:
+      label: Which stage is this about?
+      options:
+        - Material pool
+        - Generating the 15 beats
+        - Editing and refining beats
+        - Batch rewrite / diff
+        - Review (single or dual model)
+        - Versions, starring, restore
+        - Lock and export
+        - Models and settings
+        - Something outside this plugin
+    validations:
+      required: true
+
+  - type: textarea
+    id: problem
+    attributes:
+      label: The problem in your workflow
+      description: What are you doing today, and where does it hurt?
+      placeholder: "When two writers work on the same project, ..."
+    validations:
+      required: true
+
+  - type: textarea
+    id: proposal
+    attributes:
+      label: What you would like to happen
+    validations:
+      required: true
+
+  - type: textarea
+    id: alternatives
+    attributes:
+      label: What you do instead right now
+      description: Workarounds tell us how much the missing piece actually costs.
+
+  - type: checkboxes
+    id: scope
+    attributes:
+      label: Scope
+      options:
+        - label: I understand the panel is Chinese-first and an English UI is a planned change.
+          required: false

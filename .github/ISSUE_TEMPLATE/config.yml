@@ -1,0 +1,14 @@
+blank_issues_enabled: false
+contact_links:
+  - name: How this repository is maintained
+    url: https://github.com/MiiLight0/dsh-interactive-beats/blob/main/CONTRIBUTING.md
+    about: The source is MIT and open; upstream updates are made in-house. Read this before opening a PR.
+  - name: Install and usage questions
+    url: https://github.com/MiiLight0/dsh-interactive-beats#faq
+    about: The README answers the common ones — keys, models, Windows, sharing a project.
+  - name: Security report
+    url: https://github.com/MiiLight0/dsh-interactive-beats/security/advisories/new
+    about: Please report vulnerabilities privately, not as a public issue.
+  - name: DeepSeek Harness itself
+    url: https://github.com/deepseek-ai/deepseek-harness/issues
+    about: Bugs in the host application, the plugin loader or the model service belong upstream.

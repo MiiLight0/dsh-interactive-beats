@@ -1,0 +1,88 @@
+name: Bug report
+description: Something broke, or behaved differently from the README.
+title: "[bug] "
+labels: ["bug"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for taking the time. A report with a concrete reproduction gets fixed much faster
+        than one without. No PR needed — an issue is enough. 中文写也完全可以。
+
+  - type: input
+    id: version
+    attributes:
+      label: Bundle version
+      description: Exact version, please — the API reports it with `{"action":"pingVersion"}`.
+      placeholder: "0.1.0"
+    validations:
+      required: true
+
+  - type: input
+    id: harness
+    attributes:
+      label: DeepSeek Harness version
+      description: Output of `dsh --version`.
+      placeholder: "0.2.x"
+    validations:
+      required: true
+
+  - type: dropdown
+    id: install
+    attributes:
+      label: How did you install it?
+      options:
+        - github:MiiLight0/dsh-interactive-beats
+        - github:MiiLight0/dsh-interactive-beats#v0.1.0
+        - a .tgz tarball
+        - npm
+        - a local checkout
+    validations:
+      required: true
+
+  - type: input
+    id: os
+    attributes:
+      label: OS and Node version
+      placeholder: "macOS 15 · Node 22.11"
+    validations:
+      required: true
+
+  - type: textarea
+    id: what-happened
+    attributes:
+      label: What happened
+      description: What you did, what you expected, what you got. Include the exact panel action or HTTP action.
+    validations:
+      required: true
+
+  - type: textarea
+    id: reproduce
+    attributes:
+      label: Steps to reproduce
+      placeholder: |
+        1. New project
+        2. Paste material
+        3. Press 生成 15 拍
+        4. ...
+    validations:
+      required: true
+
+  - type: textarea
+    id: logs
+    attributes:
+      label: Error text or logs
+      description: |
+        The panel shows the error message verbatim; the Host logs `[interactive-beats]` lines to the
+        terminal that started the profile. Paste either here, with any story text removed.
+      render: text
+
+  - type: checkboxes
+    id: checks
+    attributes:
+      label: Before submitting
+      options:
+        - label: I removed API keys and private story material from the text above.
+          required: true
+        - label: I checked the README's Known Limitations section.
+          required: false
