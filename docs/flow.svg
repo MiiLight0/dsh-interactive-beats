@@ -1,0 +1,67 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 300" width="1200" height="300" role="img" aria-label="Workflow: material pool, generate 15 beats, refine, review, lock, export">
+  <defs>
+    <linearGradient id="flow-bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#101A2F"/>
+      <stop offset="1" stop-color="#0A1120"/>
+    </linearGradient>
+    <linearGradient id="flow-gold" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#FFDF9B"/>
+      <stop offset="1" stop-color="#E2A44B"/>
+    </linearGradient>
+  </defs>
+
+  <rect width="1200" height="300" rx="18" fill="url(#flow-bg)"/>
+  <g font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', sans-serif">
+    <text x="70" y="52" fill="#F4F7FF" font-size="20" font-weight="600">一条工作流，六道工序</text>
+    <text x="70" y="78" fill="#7E8FAD" font-size="14">one workbench · every step reversible · nothing written until you say so</text>
+
+    <!-- connectors -->
+    <g stroke="#33415C" stroke-width="1.5" fill="none" opacity="0.9">
+      <path d="M226 158h20M408 158h20M590 158h20M772 158h20M954 158h20"/>
+    </g>
+    <g fill="#4A5C7D">
+      <path d="M244 152l8 6-8 6zM426 152l8 6-8 6zM608 152l8 6-8 6zM790 152l8 6-8 6zM972 152l8 6-8 6z"/>
+    </g>
+
+    <!-- nodes -->
+    <g>
+      <rect x="70" y="120" width="156" height="78" rx="14" fill="#16223C" stroke="#2C3A58"/>
+      <rect x="252" y="120" width="156" height="78" rx="14" fill="#16223C" stroke="#2C3A58"/>
+      <rect x="434" y="120" width="156" height="78" rx="14" fill="#16223C" stroke="#2C3A58"/>
+      <rect x="616" y="120" width="156" height="78" rx="14" fill="#16223C" stroke="#2C3A58"/>
+      <rect x="798" y="120" width="156" height="78" rx="14" fill="#1B2743" stroke="#6E5325"/>
+      <rect x="980" y="120" width="156" height="78" rx="14" fill="#16223C" stroke="#2C3A58"/>
+    </g>
+
+    <g text-anchor="middle">
+      <text x="148" y="152" fill="#F4F7FF" font-size="16" font-weight="600">素材池</text>
+      <text x="148" y="174" fill="#7E8FAD" font-size="12" letter-spacing="0.6">MATERIAL</text>
+
+      <text x="330" y="152" fill="#F4F7FF" font-size="16" font-weight="600">生成十五拍</text>
+      <text x="330" y="174" fill="#7E8FAD" font-size="12" letter-spacing="0.6">GENERATE</text>
+
+      <text x="512" y="152" fill="#F4F7FF" font-size="16" font-weight="600">逐拍打磨</text>
+      <text x="512" y="174" fill="#7E8FAD" font-size="12" letter-spacing="0.6">REFINE</text>
+
+      <text x="694" y="152" fill="#F4F7FF" font-size="16" font-weight="600">双模型体检</text>
+      <text x="694" y="174" fill="#7E8FAD" font-size="12" letter-spacing="0.6">REVIEW</text>
+
+      <text x="876" y="152" fill="#F7CE84" font-size="16" font-weight="600">定稿锁定</text>
+      <text x="876" y="174" fill="#C79A4E" font-size="12" letter-spacing="0.6">LOCK</text>
+
+      <text x="1058" y="152" fill="#F4F7FF" font-size="16" font-weight="600">导出 Markdown</text>
+      <text x="1058" y="174" fill="#7E8FAD" font-size="12" letter-spacing="0.6">EXPORT</text>
+    </g>
+
+    <g text-anchor="middle" fill="#C79A4E" font-size="11" letter-spacing="1.2" opacity="0.9">
+      <text x="148" y="108">01</text>
+      <text x="330" y="108">02</text>
+      <text x="512" y="108">03</text>
+      <text x="694" y="108">04</text>
+      <text x="876" y="108">05</text>
+      <text x="1058" y="108">06</text>
+    </g>
+
+    <text x="70" y="250" fill="#6E7F9E" font-size="13">同源单路由 · 无遥测 · 数据只存本地 JSON　|　same-origin route · no telemetry · local JSON store</text>
+  </g>
+</svg>

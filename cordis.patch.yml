@@ -1,0 +1,9 @@
+# Bundle layer contributed by dsh-interactive-beats.
+#
+# One row, no options: the plugin reads its settings from the panel and writes
+# them to the profile's plugin-data directory. `id` is the stable Cordis entry
+# id (use it to override this row from the profile's own cordis.patch.yml);
+# `name` must stay equal to the package name so the loader can resolve it.
+- insert:
+    - id: interactive-beats
+      name: dsh-interactive-beats

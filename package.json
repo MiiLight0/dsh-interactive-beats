@@ -1,0 +1,90 @@
+{
+  "name": "dsh-interactive-beats",
+  "version": "0.1.0",
+  "description": "15-beat story foundation workbench for DeepSeek Harness: pile up material, generate a beat sheet with your own models, diff every cell, keep versions, lock, and export Markdown.",
+  "type": "module",
+  "main": "index.js",
+  "exports": {
+    ".": "./index.js",
+    "./client": "./client.js",
+    "./client.js": "./client.js",
+    "./locale/*.json": "./locale/*.json",
+    "./icon": "./icon.svg",
+    "./package.json": "./package.json"
+  },
+  "icon": "./icon.svg",
+  "files": [
+    "index.js",
+    "client.js",
+    "cordis.patch.yml",
+    "locale/*.json",
+    "icon.svg",
+    "seed/*.js",
+    "docs/banner.png",
+    "docs/flow.png",
+    "docs/miilight-logo.png",
+    "scripts/check.mjs",
+    "test/*.mjs",
+    "README.md",
+    "README.zh-CN.md",
+    "LICENSE",
+    "CHANGELOG.md"
+  ],
+  "keywords": [
+    "dsh",
+    "dsh-plugin",
+    "deepseek-harness",
+    "beat-sheet",
+    "story-structure",
+    "screenwriting",
+    "interactive-drama",
+    "interactive-fiction",
+    "branching-narrative",
+    "short-drama",
+    "writing-workflow"
+  ],
+  "license": "MIT",
+  "author": {
+    "name": "MiiLight 觅光剧场",
+    "url": "https://github.com/MiiLight0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/MiiLight0/dsh-interactive-beats.git"
+  },
+  "homepage": "https://github.com/MiiLight0/dsh-interactive-beats#readme",
+  "bugs": {
+    "url": "https://github.com/MiiLight0/dsh-interactive-beats/issues"
+  },
+  "engines": {
+    "dsh": ">=0.2.0 <0.3.0",
+    "node": ">=20"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "scripts": {
+    "check": "node scripts/check.mjs",
+    "test": "node test/smoke-host.mjs && node test/smoke-client.mjs"
+  },
+  "dsh": {
+    "manifestVersion": 1,
+    "bundle": {
+      "patch": "./cordis.patch.yml",
+      "platforms": [
+        "darwin",
+        "linux",
+        "win32"
+      ]
+    },
+    "client": {
+      "platform": "web",
+      "immediately": true,
+      "inject": [
+        "@deepseek-ai/dsh-client-ui-layout",
+        "@deepseek-ai/dsh-client-ui-sidebar",
+        "@deepseek-ai/dsh-client-locale"
+      ]
+    }
+  }
+}
