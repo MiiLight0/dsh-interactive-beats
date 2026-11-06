@@ -3,7 +3,7 @@
 </p>
 
 <p align="center">
-  <a href="https://github.com/MiiLight0/dsh-interactive-beats/releases"><img alt="release" src="https://img.shields.io/badge/release-0.1.0-F2C062?style=flat-square"></a>
+  <a href="https://github.com/MiiLight0/dsh-interactive-beats/releases"><img alt="release" src="https://img.shields.io/badge/release-0.2.0-F2C062?style=flat-square"></a>
   <a href="https://github.com/deepseek-ai/deepseek-harness"><img alt="dsh" src="https://img.shields.io/badge/dsh-0.2.x-3B4B6B?style=flat-square"></a>
   <a href="./LICENSE"><img alt="license" src="https://img.shields.io/badge/license-MIT-3B4B6B?style=flat-square"></a>
   <img alt="platforms" src="https://img.shields.io/badge/platform-macOS%20%7C%20Linux%20%7C%20Windows-3B4B6B?style=flat-square">
@@ -54,6 +54,12 @@
 | **锁定** | 先定稿，再锁定。锁住的拍只读。15 拍全锁，地基就冻住了。 |
 | **导出** | Markdown：brief、15 拍、体检意见、笔记、素材缺口、结构笔记，一并带走。可复制可下载。 |
 
+下面是一个打开了项目的真实面板：
+
+<p align="center">
+  <img src="./docs/panel.webp" alt="十五拍定稿台：左侧十五拍列表，右侧当前一拍的字段" width="100%">
+</p>
+
 版本号是 `MMDDHHMM`（月日时分），不是 V1/V2；同一分钟里存两次会自动往后挪一分钟，
 保证两个版本永远分得开。星标一个版本 = 标记"这个能回滚"，历史可以只看星标。
 
@@ -74,10 +80,10 @@
 dsh plugin --profile web add github:MiiLight0/dsh-interactive-beats
 
 # 走 GitHub，钉住某个 release（真要用的话推荐这条）
-dsh plugin --profile web add github:MiiLight0/dsh-interactive-beats#v0.1.0
+dsh plugin --profile web add github:MiiLight0/dsh-interactive-beats#v0.2.0
 
 # 走 tarball，不碰 registry，也不需要构建授权
-dsh plugin --profile web add ./dsh-interactive-beats-0.1.0.tgz
+dsh plugin --profile web add ./dsh-interactive-beats-0.2.0.tgz
 
 # 走 npm（发布之后）
 dsh plugin --profile web add dsh-interactive-beats
@@ -209,7 +215,7 @@ Key 写进 Host 凭据服务，键名 `interactive-beats:external-model-key`；�
 | `listModels` | — | `{ providers, current, supported }` |
 | `saveSettings` | 模型设置，可选 `apiKey` | `{ state }` |
 | `testModel` | 草稿模型设置，可选 `apiKey` | `{ ok, label, reply }` |
-| `pingVersion` | — | `{ pong }`——报出确切版本，例如 `dsh-interactive-beats@0.1.0` |
+| `pingVersion` | — | `{ pong }`——报出确切版本，例如 `dsh-interactive-beats@0.2.0` |
 
 `GET` 只返回 `{ state }`。state 里已经剥掉了版本快照，只留 `versionCount` /
 `latestVersionAt` / `starredCount`；要看列表本身请调 `getVersions`。
@@ -242,8 +248,8 @@ Key 写进 Host 凭据服务，键名 `interactive-beats:external-model-key`；�
   请当第一稿看。
 - **页码锚点是电影剧本锚点。** 默认模板按 110 页的节拍表来。72 集短剧请把它当比例尺
   （大约 1.5 页 / 集），不是字面页数。区间拍会显示自己的经典区间，偏移量算到最近的区间边缘。
-- **面板中文优先。** 界面文案是中文；市场元数据（`locale/zh.json`、`locale/en.json`）和这份
-  README 都有英文，少数主操作带了英文串，但整个面板还没做完英文化。
+- **中英双语，中文优先。** 两本字典都齐了，发布闸门会核对 key 与占位符；但英文是中文文案的
+  翻译，不是原生写作。产品词汇「拍」在英文里统一叫 beat。
 - **一台机器一个文件。** 每个 profile 一个 JSON，没有同步、没有合并、没有多人。两个 Harness
   实例共用一个 profile 目录会互相覆盖。
 - **硬上限。** 20 个项目、每拍 30 个版本、一次批量 6 拍、素材 12 万字、请求体 2 MB。
@@ -276,7 +282,7 @@ Harness 内测第一天我们就在；之前写的 Obsidian 插件，也被联�
 
 | # | 包名 | 管什么 | 状态 |
 | --- | --- | --- | --- |
-| 01 | `dsh-interactive-beats` | 十五拍定稿台——结构地基 | **已上架 · 0.1.0** |
+| 01 | `dsh-interactive-beats` | 十五拍定稿台——结构地基 | **已上架 · 0.2.0** |
 | 02 | `dsh-interactive-branch` | 分支地图——选项节点与分支图 | 开发中 |
 | 03 | `dsh-interactive-outline` | 分集大纲——拆集 | 开发中 |
 | 04 | `dsh-interactive-bible` | 设定集——世界观与人物 | 计划中 |

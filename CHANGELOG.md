@@ -4,6 +4,35 @@ All notable changes to this bundle are documented here. The format follows
 [Keep a Changelog](https://keepachangelog.com/en/1.1.0/), and the project
 adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [0.2.0] - 2026-11-06
+
+### Fixed
+
+- **New project and rename no longer die silently in the desktop app.** Both
+  actions called `window.prompt`, which Electron replaces with a stub that throws
+  synchronously; the throw landed inside a React handler, so the click looked
+  like it did nothing at all. They now open an in-panel dialog. The dialog keeps
+  the caret in the input while you type, submits on Enter, closes on Escape, and
+  disables OK while the name is empty.
+- Every confirmation — delete, overwrite on generate/compare, unlock one or all,
+  switching away from unsaved work — moved to the same in-panel confirm. The
+  client no longer calls `window.prompt`, `window.confirm` or `window.alert` at
+  all, so the panel also works in shells where native dialogs are missing or
+  block the renderer.
+
+### Added
+
+- Complete English UI. The `en` dictionary went from 110 explicit strings (the
+  rest fell back to Chinese) to 308 entries matching `zh` key for key; the panel
+  follows the Harness locale.
+- README screenshot of the workbench (`docs/panel.webp`, 1600 px, about 80 KB).
+
+### Changed
+
+- The release gate now fails on any `window.prompt` / `window.confirm` /
+  `window.alert` call, on a key missing from `en`, and on a placeholder mismatch
+  between the two dictionaries.
+
 ## [0.1.0] - 2026-11-06
 
 First public release.

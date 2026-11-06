@@ -27,6 +27,7 @@ window.__ModuleLoader__.load({
       'project.select': '项目',
       'project.untitled': '未命名项目',
       'project.createPrompt': '新项目叫什么？',
+      'project.defaultTitle': '新项目',
       'project.renamePrompt': '项目新名字',
       'project.delete': '删除项目',
       'project.deleteConfirm': '删除这个项目？15 拍和素材都会一起删掉。',
@@ -296,12 +297,15 @@ window.__ModuleLoader__.load({
       'common.error': '打不开十五拍定稿台。',
       'common.close': '关闭',
       'common.cancel': '取消',
+      'common.ok': '确定',
       'common.save': '保存',
       'common.delete': '删除',
       'common.rename': '重命名',
       'common.copy': '复制',
       'common.download': '下载',
       'common.of': '/',
+      'dialog.confirmTitle': '确认操作',
+      'dialog.continue': '继续',
       'toast.saved': '已保存。',
       'toast.generated': '15 拍已生成。素材缺口 {n} 项。',
       'toast.reviewed': '体检完成。',
@@ -322,7 +326,6 @@ window.__ModuleLoader__.load({
     // Chinese copy on purpose rather than shipping a half-invented translation;
     // see README "Known Limitations".
     const en = {
-      ...zh,
       'panel.title': '15-Beat Foundation',
       'panel.subtitle': 'Finalize the 15 beats, then write the episodes. Material → beats → lock → export.',
       'head.eyebrow': '15-BEAT STRUCTURE',
@@ -339,7 +342,8 @@ window.__ModuleLoader__.load({
       'project.select': 'Project',
       'project.untitled': 'Untitled project',
       'project.createPrompt': 'Name this project',
-      'project.renamePrompt': 'New project name',
+      'project.defaultTitle': 'New project',
+      'project.renamePrompt': 'New name for this project',
       'project.delete': 'Delete project',
       'project.deleteConfirm': 'Delete this project? Its material, beats and versions go with it.',
       'project.deleteLast': 'Keep at least one project.',
@@ -385,6 +389,9 @@ window.__ModuleLoader__.load({
       'beats.act1': 'Act I · Setup',
       'beats.act2': 'Act II · Confrontation',
       'beats.act3': 'Act III · Resolution',
+      'beats.act1Range': 'p1-25',
+      'beats.act2Range': 'p25-85',
+      'beats.act3Range': 'p85-110',
       'beats.sheetReview': 'Review the sheet',
       'beats.lockAll': 'Lock all',
       'beats.unlockAll': 'Unlock all',
@@ -392,10 +399,10 @@ window.__ModuleLoader__.load({
       'beats.unlockAllConfirm': 'Unlock all 15 beats?',
       'beats.locked': '{n}/15 locked',
       'beats.written': '{n}/15 written',
-      'beats.listHint': 'Click a beat to open it. Page drift over 3 turns amber, over 6 turns red.',
+      'beats.listHint': 'Click a beat to open it. Page drift over 3 shows amber, over 6 shows red.',
       'view.list': 'List',
       'view.table': 'Table',
-      'table.hint': 'Page, one-liner, content and hook are editable in place and save on blur; the value turn lives in the detail panel. Up to 6 beats at a time.',
+      'table.hint': 'Page, one-liner, content and hook are editable in place and save on blur; the value turn lives in the detail panel. Batch rewrite selects up to 6 beats.',
       'table.beat': 'Beat',
       'table.total': '{n} beats',
       'table.select': 'Select',
@@ -427,12 +434,206 @@ window.__ModuleLoader__.load({
       'batch.proposed': 'Proposed',
       'batch.note': 'Model note',
       'batch.clear': 'Clear selection',
+      'batch.modelPrimary': 'Primary model',
+      'batch.modelSecondary': 'Secondary model',
+      'batch.secondaryMissing': 'No secondary model',
+      'batch.op.rewrite': 'Rewrite as instructed',
+      'batch.op.tighten': 'Tighten',
+      'batch.op.conflict': 'Add conflict',
+      'batch.op.hook': 'Sharper hook',
+      'batch.target.all': 'All four fields',
+      'batch.target.oneLine': 'One-liner only',
+      'batch.target.content': 'Content only',
+      'batch.target.turn': 'Value turn only',
+      'batch.target.hook': 'Hook only',
+      'batch.max': 'Up to 6 beats at a time.',
+      'history.button': 'History',
+      'history.title': 'Version history',
+      'history.subtitle': 'Every save leaves a version behind; old ones can be restored.',
+      'history.empty': 'No versions yet. Save this beat once and one appears.',
+      'history.loading': 'Loading versions…',
+      'history.latest': 'Currently saved',
+      'history.restore': 'Restore this version',
+      'history.restoring': 'Restoring…',
+      'history.source.manual': 'Manual save',
+      'history.source.ai-batch': 'AI batch',
+      'history.source.restore': 'Restore',
+      'history.note': 'Note',
+      'history.close': 'Close',
+      'history.count': '{n} versions',
+      'history.starredCount': '{n} starred',
+      'version.star': 'Star',
+      'version.unstar': 'Unstar',
+      'version.onlyStarred': 'Starred only',
+      'version.all': 'All versions',
+      'version.noStarred': 'Nothing starred yet.',
+      'version.stampHint': 'Version id = month-day-hour-minute (e.g. 11051727); a repeat in the same minute shifts one minute on',
+      'batch.selectedChanges': '{n} selected',
+      'batch.selectAll': 'Select all',
+      'batch.selectNone': 'Select none',
+      'batch.applySelected': 'Apply {n} changes',
+      'batch.applyOne': 'Apply this cell',
+      'batch.applyingOne': 'Applying…',
+      'batch.diffNow': 'Now',
+      'batch.diffNew': 'To',
+      'toast.batchAppliedFields': '{n} changes applied.',
+      'toast.batchOneApplied': 'Cell applied.',
+      'toast.starred': 'Starred.',
+      'toast.unstarred': 'Star removed.',
+      'toast.tableSaved': 'Cell saved.',
+      'toast.batchApplied': '{n} beats updated.',
+      'toast.versionRestored': 'Version restored.',
+      'toast.batchPreview': 'Preview ready. Apply what you want.',
+      'toast.maxSelected': 'Up to 6 beats at a time.',
+      'status.empty': 'Empty',
+      'status.draft': 'Draft',
+      'status.final': 'Final',
+      'status.locked': 'Locked',
+      'beat.eyebrow': 'Beat {no} · Act {act} · target p{target}',
+      'beat.final': 'Finalize',
+      'beat.unfinal': 'Unfinalize',
+      'beat.lock': 'Lock',
+      'beat.unlock': 'Unlock',
+      'beat.lockedBanner': 'This beat is locked: read only. Unlock it to edit.',
+      'beat.task': 'What this beat has to do',
+      'beat.oneLine': 'One-line job',
+      'beat.oneLinePlaceholder': 'What does this beat do for the whole series?',
+      'beat.content': 'What happens',
+      'beat.contentPlaceholder': 'Concrete events, settings, physical action. Not “she grows as a person”.',
+      'beat.turn': 'Value turn',
+      'beat.turnPlaceholder': 'From X to Y: what she lost, what she learned, how the relationship changed',
+      'beat.hook': 'Hook',
+      'beat.hookPlaceholder': 'When this beat ends, what does the audience need to know next?',
+      'beat.page': 'Current page',
+      'beat.episodeHint': 'Episode span',
+      'beat.episodeHintPlaceholder': 'Ep. 1–2',
+      'beat.pageTarget': 'Target p{target}',
+      'beat.pageDrift': 'Drift {drift}',
+      'beat.sourceNote': 'Source / adaptation note',
+      'beat.sourceNotePlaceholder': 'What did you take from the material? What did you cut, merge or move, and why?',
+      'beat.notes': 'Notes to self',
+      'beat.notesPlaceholder': 'What to watch out for in this scene, what to fix next pass…',
+      'beat.checks': 'Done checklist',
+      'beat.checkProgress': '{done}/{total}',
       'beat.save': 'Save beat',
+      'beat.saving': 'Saving…',
+      'beat.saved': 'Saved',
+      'beat.dirty': 'Unsaved changes',
       'beat.review': 'Review this beat',
+      'beat.reviewing': 'Reviewing…',
+      'beat.reviewDual': 'Dual-model review',
+      'beat.noReview': 'No review yet. Hit “Review this beat” and let a model read it on function, causality, character, theme and hook.',
+      'beat.reviewHint': 'Scores are the model\'s own, useful for comparing versions, not an absolute grade.',
+      'beat.score': 'Overall',
+      'beat.dim.function': 'Function',
+      'beat.dim.causality': 'Causality',
+      'beat.dim.character': 'Character',
+      'beat.dim.theme': 'Theme',
+      'beat.dim.hook': 'Hook',
+      'beat.verdict': 'Verdict',
+      'beat.issues': 'Issues',
+      'beat.fix': 'One fix',
+      'beat.alternatives': 'Alternatives',
+      'beat.model': 'Reviewing model',
+      'beat.disagreement': '{n} points apart, read the issues both models raise.',
+      'beat.finalFirst': 'Write the content before finalizing.',
+      'beat.lockFirst': 'Finalize before locking.',
+      'beat.lockedToast': 'Locked.',
+      'beat.unlockedToast': 'Unlocked.',
+      'beat.confirmUnlock': 'Unlock this beat?',
+      'beat.unsavedConfirm': 'This beat has unsaved changes. Switch anyway?',
+      'beat.reviewWarnings': 'Review warnings',
+      'sheet.title': 'Whole-sheet review',
+      'sheet.subtitle': 'Have a model read all 15 beats as one structure: three acts, stakes, B story, midpoint, all-is-lost, act-three turn.',
+      'sheet.run': 'Run the review',
+      'sheet.rerun': 'Run it again',
+      'sheet.running': 'Reading the whole sheet…',
+      'sheet.overall': 'Overall',
+      'sheet.act1': 'Act I',
+      'sheet.act2': 'Act II',
+      'sheet.act3': 'Act III',
+      'sheet.verdict': 'Verdict',
+      'sheet.issues': 'Key issues',
+      'sheet.topFixes': 'Fix first',
+      'sheet.empty': 'No whole-sheet review yet.',
+      'sheet.close': 'Close',
+      'sheet.warning': 'This reads all 15 beats. Usually 30–60 seconds.',
       'settings.title': 'Model settings',
+      'settings.subtitle': 'Both models come from the DSH model list. Dual review runs the same question through both and shows the two cards side by side.',
+      'settings.mode': 'Review mode',
+      'settings.mode.single': 'Single model',
+      'settings.mode.dual': 'Dual model',
+      'settings.mode.singleHint': 'Primary model only.',
+      'settings.mode.dualHint': 'Primary plus secondary, each reviewing once, side by side.',
+      'settings.primary': 'Primary model',
+      'settings.primaryHint': 'Used to generate the 15 beats and for single-model review.',
+      'settings.secondary': 'Secondary model (dual review)',
+      'settings.secondaryHint': 'Pick a model different from the primary, or the two cards will agree on everything.',
+      'settings.followDefault': 'Follow the DSH default',
+      'settings.none': 'No second model',
+      'settings.externalOption': 'External compatible endpoint (advanced)',
+      'settings.currentDefault': 'Current DSH default: {label}',
+      'settings.refresh': 'Refresh list',
+      'settings.modelsLoading': 'Reading the DSH model list…',
+      'settings.modelsEmpty': 'No DSH models found. Check the model settings in DSH.',
+      'settings.modelsUnsupported': 'This DSH has no usable LLM service.',
+      'settings.modelsError': 'Some providers failed to load',
+      'settings.testPrimary': 'Test primary',
+      'settings.testSecondary': 'Test secondary',
+      'settings.test': 'Test external model',
+      'settings.testDsh': 'Test DSH',
+      'settings.testing': 'Testing…',
+      'settings.testOk': 'Connected',
+      'settings.testFail': 'Connection failed',
+      'settings.needSecondary': 'Dual review needs a second model.',
+      'settings.sameModel': 'Primary and secondary are the same model; the scores will look nearly identical.',
+      'settings.external': 'External compatible endpoint',
+      'settings.externalHint': 'Any OpenAI Chat Completions endpoint: your own gateway, a proxy, or a vendor\'s compatible URL. Empty by default; material leaves this machine only after you fill it in.',
+      'settings.baseURL': 'Endpoint URL',
+      'settings.model': 'Model name',
+      'settings.apiKey': 'API key',
+      'settings.keySaved': 'Key saved',
+      'settings.keyPlaceholder': 'Leave blank to keep it',
+      'settings.clearKey': 'Clear the saved key',
+      'settings.save': 'Save settings',
+      'settings.saving': 'Saving…',
+      'settings.close': 'Close',
+      'settings.needKey': 'Fill in the endpoint and the model name, and save a key first.',
       'export.title': 'Export 15 beats',
+      'export.subtitle': 'Hand it to a writer as a structure brief, or paste it into your own outlining tool.',
+      'export.warning': '{n} beats are not locked yet, so this export is a draft.',
+      'export.dirty': 'Unsaved edits; this exports the last saved version.',
+      'export.copy': 'Copy Markdown',
+      'export.copied': 'Copied',
+      'export.download': 'Download .md',
+      'export.close': 'Close',
       'common.retry': 'Retry',
       'common.loading': 'Opening 15-Beat Foundation…',
+      'common.error': '15-Beat Foundation failed to open.',
+      'common.close': 'Close',
+      'common.cancel': 'Cancel',
+      'common.ok': 'OK',
+      'common.save': 'Save',
+      'common.delete': 'Delete',
+      'common.rename': 'Rename',
+      'common.copy': 'Copy',
+      'common.download': 'Download',
+      'common.of': '/',
+      'dialog.confirmTitle': 'Please confirm',
+      'dialog.continue': 'Continue',
+      'toast.saved': 'Saved.',
+      'toast.generated': '15 beats generated. {n} gaps in the material.',
+      'toast.reviewed': 'Review done.',
+      'toast.settingsSaved': 'Model settings saved.',
+      'toast.projectCreated': 'Project created.',
+      'toast.projectDeleted': 'Project deleted.',
+      'toast.materialSaved': 'Material saved.',
+      'toast.briefSaved': 'Brief saved.',
+      'toast.lockedAll': 'All 15 beats locked.',
+      'toast.unlockedAll': 'All 15 beats unlocked.',
+      'toast.copyOk': 'Markdown copied.',
+      'toast.copyFail': 'Copy failed; select the text by hand.',
+      'toast.needKey': 'Save the external model key first.',
     }
 
     function format(template, values) {
@@ -1003,15 +1204,20 @@ window.__ModuleLoader__.load({
 
     function Modal({ title, subtitle, onClose, children, footer, wide }) {
       const ref = useRef(null)
+      // Keep the latest close handler without re-running the mount effect. A
+      // changing onClose used to re-focus the container on every keystroke,
+      // which pulled the caret out of the dialog's input after one character.
+      const closeRef = useRef(onClose)
+      closeRef.current = onClose
       useEffect(() => {
         const node = ref.current
         if (node !== null) node.focus()
         const onKey = (event) => {
-          if (event.key === 'Escape') onClose()
+          if (event.key === 'Escape') closeRef.current()
         }
         window.addEventListener('keydown', onKey)
         return () => window.removeEventListener('keydown', onKey)
-      }, [onClose])
+      }, [])
       return h(
         'div',
         {
@@ -1044,6 +1250,67 @@ window.__ModuleLoader__.load({
           h('div', { className: 'bf-modal-body' }, children),
           footer ? h('footer', { className: 'bf-modal-foot' }, footer) : null,
         ),
+      )
+    }
+
+    // An in-panel replacement for window.prompt / window.confirm. The desktop
+    // shell stubs window.prompt to throw, and the throw happens inside a React
+    // handler, so the click looks like it did nothing at all. Native dialogs
+    // also block the renderer and do not exist in TUI or headless shells.
+    function AskDialog({ request, tr, onSettle }) {
+      const isText = request.kind === 'text'
+      const [value, setValue] = useState(isText ? (request.initial ?? '') : '')
+      const inputRef = useRef(null)
+      const dismiss = () => onSettle(isText ? null : false)
+
+      useEffect(() => {
+        if (!isText) return undefined
+        // Modal focuses its own container on mount; take the caret back after it.
+        const timer = setTimeout(() => {
+          const node = inputRef.current
+          if (node === null) return
+          node.focus()
+          node.select()
+        }, 0)
+        return () => clearTimeout(timer)
+      }, [isText])
+
+      const submit = () => {
+        if (isText && value.trim() === '') return
+        onSettle(isText ? value.trim() : true)
+      }
+
+      return h(
+        Modal,
+        {
+          title: request.title,
+          subtitle: request.subtitle,
+          onClose: dismiss,
+          footer: [
+            h(Button, { key: 'cancel', variant: 'ghost', onClick: dismiss }, tr('common.cancel')),
+            h(
+              Button,
+              { key: 'ok', variant: request.danger ? 'danger' : 'primary', onClick: submit, disabled: isText && value.trim() === '' },
+              request.confirmLabel ?? tr('common.ok'),
+            ),
+          ],
+        },
+        isText
+          ? h('input', {
+              ref: inputRef,
+              className: 'bf-input bf-dialog-input',
+              value,
+              maxLength: 120,
+              placeholder: request.placeholder ?? '',
+              'aria-label': request.title,
+              onChange: (event) => setValue(event.target.value),
+              onKeyDown: (event) => {
+                if (event.key !== 'Enter') return
+                event.preventDefault()
+                submit()
+              },
+            })
+          : h('p', { className: 'bf-dialog-text' }, request.message),
       )
     }
 
@@ -2871,6 +3138,37 @@ window.__ModuleLoader__.load({
       const [modelsBusy, setModelsBusy] = useState(false)
       const projectRef = useRef(null)
       const compareToken = useRef(0)
+      const [ask, setAsk] = useState(null)
+      const askResolve = useRef(null)
+
+      // One dialog at a time, resolved through a promise so call sites keep
+      // reading like the old window.prompt / window.confirm code.
+      function openAsk(request) {
+        return new Promise((resolve) => {
+          const pending = askResolve.current
+          askResolve.current = resolve
+          setAsk(request)
+          if (pending !== null) pending(request.kind === 'text' ? null : false)
+        })
+      }
+
+      const askText = (title, initial) => openAsk({ kind: 'text', title, initial: initial ?? '' })
+
+      const askConfirm = (message, options) =>
+        openAsk({
+          kind: 'confirm',
+          title: options?.title ?? tr('dialog.confirmTitle'),
+          message,
+          confirmLabel: options?.confirmLabel,
+          danger: options?.danger === true,
+        })
+
+      function settleAsk(value) {
+        const resolve = askResolve.current
+        askResolve.current = null
+        setAsk(null)
+        if (resolve !== null) resolve(value)
+      }
 
       const closeCompare = () => {
         compareToken.current += 1
@@ -2973,7 +3271,7 @@ window.__ModuleLoader__.load({
 
       async function selectProject(id) {
         if (id === state.activeProjectId) return
-        if ((materialDirty || beatDirty) && !window.confirm(tr('project.unsavedConfirm'))) return
+        if ((materialDirty || beatDirty) && !(await askConfirm(tr('project.unsavedConfirm'), { confirmLabel: tr('dialog.continue') }))) return
         setBatchPreview(null)
         setVersionsOpen(false)
         setBusy('project')
@@ -2988,7 +3286,7 @@ window.__ModuleLoader__.load({
       }
 
       async function createProject() {
-        const title = window.prompt(tr('project.createPrompt'), '新项目')
+        const title = await askText(tr('project.createPrompt'), tr('project.defaultTitle'))
         if (title === null) return
         setBatchPreview(null)
         setVersionsOpen(false)
@@ -3006,7 +3304,7 @@ window.__ModuleLoader__.load({
 
       async function renameProject() {
         if (project === null) return
-        const title = window.prompt(tr('project.renamePrompt'), project.title)
+        const title = await askText(tr('project.renamePrompt'), project.title)
         if (title === null || title.trim() === '') return
         setBusy('project')
         try {
@@ -3021,7 +3319,7 @@ window.__ModuleLoader__.load({
 
       async function deleteProject() {
         if (project === null) return
-        if (!window.confirm(tr('project.deleteConfirm'))) return
+        if (!(await askConfirm(tr('project.deleteConfirm'), { title: tr('project.delete'), confirmLabel: tr('common.delete'), danger: true }))) return
         setBatchPreview(null)
         setVersionsOpen(false)
         setBusy('project')
@@ -3056,7 +3354,7 @@ window.__ModuleLoader__.load({
           notify('error', tr('material.lockedHint'))
           return
         }
-        if (project.beats.some((beat) => beat.content.trim() !== '') && !window.confirm(tr('material.confirmOverwrite'))) return
+        if (project.beats.some((beat) => beat.content.trim() !== '') && !(await askConfirm(tr('material.confirmOverwrite')))) return
         setBusy('generate')
         try {
           const data = await api('generateBeats', { id: project.id, material: materialDraft, brief: briefDraft })
@@ -3089,7 +3387,7 @@ window.__ModuleLoader__.load({
           notify('error', tr('material.lockedHint'))
           return
         }
-        if (project.beats.some((beat) => beat.content.trim() !== '') && !window.confirm(tr('material.confirmOverwrite'))) return
+        if (project.beats.some((beat) => beat.content.trim() !== '') && !(await askConfirm(tr('material.confirmOverwrite')))) return
         const started = Date.now()
         const token = ++compareToken.current
         setBusy('compare')
@@ -3177,7 +3475,7 @@ window.__ModuleLoader__.load({
           notify('error', tr('beat.lockFirst'))
           return
         }
-        if (selectedBeat.locked && !window.confirm(tr('beat.confirmUnlock'))) return
+        if (selectedBeat.locked && !(await askConfirm(tr('beat.confirmUnlock')))) return
         setBusy('lock')
         try {
           const data = await api('lockBeat', { id: project.id, key: selectedBeat.key, locked: !selectedBeat.locked })
@@ -3195,8 +3493,8 @@ window.__ModuleLoader__.load({
 
       async function lockAll(locked) {
         if (project === null) return
-        if (locked && !window.confirm(tr('beats.lockAllConfirm'))) return
-        if (!locked && !window.confirm(tr('beats.unlockAllConfirm'))) return
+        if (locked && !(await askConfirm(tr('beats.lockAllConfirm')))) return
+        if (!locked && !(await askConfirm(tr('beats.unlockAllConfirm')))) return
         setBusy('lock-all')
         try {
           const data = await api('lockAll', { id: project.id, locked })
@@ -3437,9 +3735,9 @@ window.__ModuleLoader__.load({
         }
       }
 
-      function selectBeat(key) {
+      async function selectBeat(key) {
         if (key === selectedKey) return
-        if (beatDirty && !window.confirm(tr('beat.unsavedConfirm'))) return
+        if (beatDirty && !(await askConfirm(tr('beat.unsavedConfirm'), { confirmLabel: tr('dialog.continue') }))) return
         setSelectedKey(key)
       }
 
@@ -3470,6 +3768,7 @@ window.__ModuleLoader__.load({
             h('p', null, tr('material.empty')),
             h(Button, { onClick: createProject, variant: 'primary', icon: h(PlusIcon, null) }, tr('head.newProject')),
           ),
+          ask === null ? null : h(AskDialog, { request: ask, tr, onSettle: settleAsk }),
         )
       }
 
@@ -3631,6 +3930,7 @@ window.__ModuleLoader__.load({
               busy: busy === 'restore' || busy === 'star',
             })
           : null,
+        ask === null ? null : h(AskDialog, { request: ask, tr, onSettle: settleAsk }),
         toast !== null
           ? h(
               'div',
@@ -3846,6 +4146,8 @@ window.__ModuleLoader__.load({
 .bf-modal-head p { margin: 5px 0 0; font-size: 11.5px; line-height: 1.5; color: var(--dsw-alias-label-secondary); }
 .bf-modal-body { padding: 16px 18px; overflow: auto; display: flex; flex-direction: column; gap: 12px; }
 .bf-modal-foot { display: flex; align-items: center; justify-content: flex-end; gap: 8px; flex-wrap: wrap; padding: 12px 18px; border-top: 1px solid var(--dsw-alias-border-l1); }
+.bf-dialog-text { margin: 0; font-size: 13px; line-height: 1.7; color: var(--dsw-alias-label-secondary); }
+.bf-dialog-input { height: 36px; font-size: 14px; }
 .bf-model-row { display: flex; align-items: center; gap: 7px; }
 .bf-model-select { flex: 1; min-width: 0; }
 .bf-export-pre { margin: 0; padding: 14px; border: 1px solid var(--dsw-alias-border-l1); border-radius: 10px; background: var(--dsw-alias-bg-layer-2); font: 11.5px/1.7 ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; white-space: pre-wrap; word-break: break-word; max-height: 58vh; overflow: auto; }

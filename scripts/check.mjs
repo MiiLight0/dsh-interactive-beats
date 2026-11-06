@@ -261,7 +261,52 @@ if (pkg.icon !== undefined) {
   else ok(`icon: ${pkg.icon} (${statSync(iconPath).size} bytes)`)
 }
 
-// ── 3. syntax of every shipped JavaScript file ──────────────────────────────
+// ── 3. the client half must work in every shell ─────────────────────────────
+
+// Electron replaces window.prompt with a stub that throws, and the throw lands
+// inside a React handler: the click looks like it did nothing. window.confirm
+// survives today but blocks the renderer and does not exist in TUI or headless
+// shells, so the panel keeps its own dialogs.
+for (const call of ['prompt', 'confirm', 'alert']) {
+  if (new RegExp(`\\bwindow\\.${call}\\s*\\(`).test(clientSource)) {
+    fail(`client.js: window.${call}() is not portable — the desktop shell throws on prompt; use the in-panel dialog`)
+  }
+}
+ok('client.js: no native prompt/confirm/alert calls')
+
+// Both dictionaries are registered as-is, and makeTr falls back to Chinese for
+// a missing key. A half-filled en dictionary therefore ships a half-Chinese UI.
+const parseDictionary = (name) => {
+  const start = clientSource.indexOf(`const ${name} = {`)
+  if (start < 0) return null
+  const end = clientSource.indexOf('\n    }', start)
+  if (end < 0) return null
+  const map = new Map()
+  for (const line of clientSource.slice(start, end).split('\n')) {
+    const match = /^\s+'([^']+)':\s*(.+),$/.exec(line)
+    if (match !== null) map.set(match[1], match[2])
+  }
+  return map
+}
+const zhDict = parseDictionary('zh')
+const enDict = parseDictionary('en')
+if (zhDict === null || enDict === null || zhDict.size === 0) {
+  fail('client.js: could not parse the zh/en dictionaries')
+} else {
+  const missingEn = [...zhDict.keys()].filter((key) => !enDict.has(key))
+  if (missingEn.length > 0) {
+    fail(`client.js: ${missingEn.length} key(s) missing from en — they render in Chinese: ${missingEn.slice(0, 6).join(', ')}`)
+  } else {
+    ok(`locale: ${zhDict.size} keys present in both zh and en`)
+  }
+  const placeholders = (value) => (value.match(/\{(\w+)\}/g) ?? []).sort().join(',')
+  const drift = [...zhDict]
+    .filter(([key, value]) => enDict.has(key) && placeholders(value) !== placeholders(enDict.get(key)))
+    .map(([key]) => key)
+  if (drift.length > 0) fail(`client.js: zh/en placeholder mismatch: ${drift.slice(0, 6).join(', ')}`)
+}
+
+// ── 4. syntax of every shipped JavaScript file ──────────────────────────────
 
 const scripts = [
   'index.js',
@@ -287,7 +332,7 @@ for (const file of scripts) {
   }
 }
 
-// ── 4. privacy gate ────────────────────────────────────────────────────────
+// ── 5. privacy gate ────────────────────────────────────────────────────────
 
 const SCAN_SKIP = new Set(['scripts/check.mjs'])
 const SCAN_EXTENSIONS = ['.js', '.mjs', '.json', '.yml', '.yaml', '.md', '.svg', '.txt']

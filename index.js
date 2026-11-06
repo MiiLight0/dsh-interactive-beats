@@ -13,7 +13,7 @@ import { dirname, join } from 'node:path'
 import { beatTemplates } from './seed/templates.js'
 
 const ROUTE_PATH = '/interactive-beats/api'
-const PLUGIN_VERSION = '0.1.0'
+const PLUGIN_VERSION = '0.2.0'
 const STATE_VERSION = 1
 const SEED_VERSION = 0
 const STORE_NAME = 'interactive-beats.json'

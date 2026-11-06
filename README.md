@@ -3,7 +3,7 @@
 </p>
 
 <p align="center">
-  <a href="https://github.com/MiiLight0/dsh-interactive-beats/releases"><img alt="release" src="https://img.shields.io/badge/release-0.1.0-F2C062?style=flat-square"></a>
+  <a href="https://github.com/MiiLight0/dsh-interactive-beats/releases"><img alt="release" src="https://img.shields.io/badge/release-0.2.0-F2C062?style=flat-square"></a>
   <a href="https://github.com/deepseek-ai/deepseek-harness"><img alt="dsh" src="https://img.shields.io/badge/dsh-0.2.x-3B4B6B?style=flat-square"></a>
   <a href="./LICENSE"><img alt="license" src="https://img.shields.io/badge/license-MIT-3B4B6B?style=flat-square"></a>
   <img alt="platforms" src="https://img.shields.io/badge/platform-macOS%20%7C%20Linux%20%7C%20Windows-3B4B6B?style=flat-square">
@@ -57,6 +57,12 @@ Three things we wanted and could not find in one place:
 | **Lock** | Finalize, then lock. Locked beats are read-only. Locking all 15 freezes the foundation. |
 | **Export** | Markdown with the brief, all 15 beats, reviews, notes, missing material and structure notes. Copy or download. |
 
+This is the workbench with a project open:
+
+<p align="center">
+  <img src="./docs/panel.webp" alt="The workbench: the 15-beat list on the left, the selected beat's fields on the right" width="100%">
+</p>
+
 Version ids are `MMDDHHMM`, not `V1`/`V2` — two versions inside the same minute get bumped by a
 minute so they stay distinguishable. Star a version to mark it as a known-good rollback point,
 and filter the history to starred entries only.
@@ -79,10 +85,10 @@ Pick one. Every command targets a profile; `web` is the usual one.
 dsh plugin --profile web add github:MiiLight0/dsh-interactive-beats
 
 # GitHub, pinned to a release (recommended for anything you rely on)
-dsh plugin --profile web add github:MiiLight0/dsh-interactive-beats#v0.1.0
+dsh plugin --profile web add github:MiiLight0/dsh-interactive-beats#v0.2.0
 
 # A packed tarball, no registry and no build permission needed
-dsh plugin --profile web add ./dsh-interactive-beats-0.1.0.tgz
+dsh plugin --profile web add ./dsh-interactive-beats-0.2.0.tgz
 
 # npm, once published
 dsh plugin --profile web add dsh-interactive-beats
@@ -133,8 +139,10 @@ delete it by hand if you want a clean slate.
    while anything is still locked.
 8. **导出** — Markdown, ready for a writer or your own episode tooling.
 
-The panel copy is Chinese-first, because that is the language our writers and directors work in.
-The eight steps above are the same words you will see in the UI.
+The panel follows the Harness language and ships complete Chinese and English dictionaries. The copy
+was written in Chinese first, because that is the language our writers and directors work in; the
+English version is a full translation, not a fallback. The eight steps above use the Chinese labels
+you will see in the screenshots.
 
 ## Models
 
@@ -230,7 +238,7 @@ script a bulk edit or check state from outside the panel.
 | `listModels` | — | `{ providers, current, supported }` |
 | `saveSettings` | model settings, optional `apiKey` | `{ state }` |
 | `testModel` | draft model settings, optional `apiKey` | `{ ok, label, reply }` |
-| `pingVersion` | — | `{ pong }` — reports the exact build, e.g. `dsh-interactive-beats@0.1.0` |
+| `pingVersion` | — | `{ pong }` — reports the exact build, e.g. `dsh-interactive-beats@0.2.0` |
 
 `GET` returns `{ state }` only. The state payload strips version snapshots and exposes
 `versionCount` / `latestVersionAt` / `starredCount`; call `getVersions` for the list itself.
@@ -270,9 +278,9 @@ this one is for the human doing the structural work.
   72-episode short drama those numbers are a proportion proxy (roughly 1.5 pages per episode), not
   literal screenplay pages. Range beats show their canonical range, and drift is measured to the
   nearest range edge.
-- **Chinese-first UI.** The panel copy is Chinese; marketplace metadata (`locale/zh.json`,
-  `locale/en.json`) and this README are translated, and a handful of primary actions have English
-  strings, but the full panel is not translated yet.
+- **Bilingual UI, Chinese-first copy.** Both dictionaries are complete and the release gate checks
+  key and placeholder parity, but the English strings are a translation of copy written in Chinese.
+  Product vocabulary (拍) is kept as “beat”.
 - **One machine, one file.** The store is a single JSON document per profile with no sync, no
   merge and no multi-user access. Two Harness instances sharing a profile directory will overwrite
   each other.
@@ -309,7 +317,7 @@ The queue so far:
 
 | # | Package | Stage | Status |
 | --- | --- | --- | --- |
-| 01 | `dsh-interactive-beats` | 十五拍定稿台 — the structural foundation | **shipped · 0.1.0** |
+| 01 | `dsh-interactive-beats` | 十五拍定稿台 — the structural foundation | **shipped · 0.2.0** |
 | 02 | `dsh-interactive-branch` | 分支地图 — choice nodes and branch graph | in development |
 | 03 | `dsh-interactive-outline` | 分集大纲 — episode breakdown | in development |
 | 04 | `dsh-interactive-bible` | 设定集 — world and character bible | planned |

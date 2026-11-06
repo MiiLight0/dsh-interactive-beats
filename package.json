@@ -1,6 +1,6 @@
 {
   "name": "dsh-interactive-beats",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "15-beat story foundation workbench for DeepSeek Harness: pile up material, generate a beat sheet with your own models, diff every cell, keep versions, lock, and export Markdown.",
   "type": "module",
   "main": "index.js",
@@ -23,6 +23,7 @@
     "docs/banner.png",
     "docs/flow.png",
     "docs/miilight-logo.png",
+    "docs/panel.webp",
     "scripts/check.mjs",
     "test/*.mjs",
     "README.md",
